@@ -22,7 +22,7 @@ class MfNavs
                     ]
                 ),
                 new Column(
-                    'first_name',
+                    'isin',
                     [
                         'type'          => Column::TYPE_VARCHAR,
                         'size'          => 50,
@@ -30,10 +30,38 @@ class MfNavs
                     ]
                 ),
                 new Column(
-                    'last_name',
+                    'last_updated',
                     [
                         'type'          => Column::TYPE_VARCHAR,
                         'size'          => 50,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'latest_nav',
+                    [
+                        'type'          => Column::TYPE_FLOAT,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'scheme_code',
+                    [
+                        'type'          => Column::TYPE_INTEGER,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'navs',
+                    [
+                        'type'          => Column::TYPE_JSON,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'type',
+                    [
+                        'type'          => Column::TYPE_TINYINTEGER,
                         'notNull'       => true,
                     ]
                 )
@@ -42,7 +70,8 @@ class MfNavs
                 new Index(
                     'column_UNIQUE',
                     [
-                        'last_name'
+                        'isin',
+                        'scheme_code'
                     ],
                     'UNIQUE'
                 )
@@ -60,7 +89,7 @@ class MfNavs
             new Index(
                 'column_INDEX',
                 [
-                    'first_name'
+                    'isin'
                 ],
                 'INDEX'
             )

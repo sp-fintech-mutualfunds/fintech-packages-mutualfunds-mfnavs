@@ -2,28 +2,44 @@
 
 namespace Apps\Fintech\Packages\Mf\Navs;
 
+use Apps\Fintech\Packages\Mf\Navs\Model\AppsFintechMfNavs;
 use System\Base\BasePackage;
 
 class MfNavs extends BasePackage
 {
-    //protected $modelToUse = ::class;
+    protected $modelToUse = AppsFintechMfNavs::class;
 
     protected $packageName = 'mfnavs';
 
     public $mfnavs;
 
-    public function getMfNavsById($id)
+    public function getMfNavsByIsin($isin)
     {
-        $mfnavs = $this->getById($id);
-
-        if ($mfnavs) {
-            //
-            $this->addResponse('Success');
-
-            return;
+        if ($this->config->databasetype === 'db') {
+            $conditions =
+                [
+                    'conditions'    => 'isin = :isin:',
+                    'bind'          =>
+                        [
+                            'isin'  => $isin
+                        ]
+                ];
+        } else {
+            $conditions =
+                [
+                    'conditions'    => [
+                        ['isin', '=', $isin]
+                    ]
+                ];
         }
 
-        $this->addResponse('Error', 1);
+        $mfnavs = $this->getByParams($conditions);
+
+        if ($mfnavs && count($mfnavs) > 0) {
+            return $mfnavs[0];
+        }
+
+        return false;
     }
 
     public function addMfNavs($data)
@@ -33,29 +49,11 @@ class MfNavs extends BasePackage
 
     public function updateMfNavs($data)
     {
-        $mfnavs = $this->getById($id);
-
-        if ($mfnavs) {
-            //
-            $this->addResponse('Success');
-
-            return;
-        }
-
-        $this->addResponse('Error', 1);
+        //
     }
 
     public function removeMfNavs($data)
     {
-        $mfnavs = $this->getById($id);
-
-        if ($mfnavs) {
-            //
-            $this->addResponse('Success');
-
-            return;
-        }
-
-        $this->addResponse('Error', 1);
+        //
     }
 }

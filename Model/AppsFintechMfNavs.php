@@ -8,7 +8,15 @@ class AppsFintechMfNavs extends BaseModel
 {
     public $id;
 
-    public $first_name;
+    public $isin;
 
-    public $last_name;
+    public $last_updated;
+
+    public $latest_nav;
+
+    public $scheme_code;
+
+    public $navs;
+
+    public $type;
 }
