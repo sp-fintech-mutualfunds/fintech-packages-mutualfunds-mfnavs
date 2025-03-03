@@ -22,10 +22,9 @@ class MfNavs
                     ]
                 ),
                 new Column(
-                    'isin',
+                    'amfi_code',
                     [
-                        'type'          => Column::TYPE_VARCHAR,
-                        'size'          => 50,
+                        'type'          => Column::TYPE_INTEGER,
                         'notNull'       => true,
                     ]
                 ),
@@ -45,10 +44,25 @@ class MfNavs
                     ]
                 ),
                 new Column(
-                    'scheme_code',
+                    'diff',
                     [
-                        'type'          => Column::TYPE_INTEGER,
-                        'notNull'       => true,
+                        'type'          => Column::TYPE_FLOAT,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(
+                    'diff_percent',
+                    [
+                        'type'          => Column::TYPE_FLOAT,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(
+                    'trajectory',
+                    [
+                        'type'          => Column::TYPE_VARCHAR,
+                        'size'          => 5,
+                        'notNull'       => false,
                     ]
                 ),
                 new Column(
@@ -59,9 +73,9 @@ class MfNavs
                     ]
                 ),
                 new Column(
-                    'type',
+                    'navs_chunks',
                     [
-                        'type'          => Column::TYPE_TINYINTEGER,
+                        'type'          => Column::TYPE_JSON,
                         'notNull'       => true,
                     ]
                 )
@@ -70,8 +84,7 @@ class MfNavs
                 new Index(
                     'column_UNIQUE',
                     [
-                        'isin',
-                        'scheme_code'
+                        'amfi_code'
                     ],
                     'UNIQUE'
                 )
@@ -89,7 +102,7 @@ class MfNavs
             new Index(
                 'column_INDEX',
                 [
-                    'isin'
+                    'amfi_code'
                 ],
                 'INDEX'
             )
