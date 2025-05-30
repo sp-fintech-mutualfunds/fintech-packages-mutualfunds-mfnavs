@@ -13,6 +13,16 @@ class MfNavs extends BasePackage
 
     public $mfnavs;
 
+    public function init()
+    {
+        parent::init();
+
+        $this->ffStore = $this->ff->store($this->ffStoreToUse);
+        $this->ffStore->setValidateData(false);
+
+        return $this;
+    }
+
     public function getMfNavsByIsin($isin)
     {
         if ($this->config->databasetype === 'db') {
