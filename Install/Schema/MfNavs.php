@@ -22,17 +22,10 @@ class MfNavs
                     ]
                 ),
                 new Column(
-                    'amfi_code',
-                    [
-                        'type'          => Column::TYPE_INTEGER,
-                        'notNull'       => true,
-                    ]
-                ),
-                new Column(
                     'last_updated',
                     [
                         'type'          => Column::TYPE_VARCHAR,
-                        'size'          => 50,
+                        'size'          => 15,
                         'notNull'       => true,
                     ]
                 ),
@@ -76,36 +69,13 @@ class MfNavs
                     'navs_chunks',
                     [
                         'type'          => Column::TYPE_JSON,
-                        'notNull'       => true,
+                        'notNull'       => false,
                     ]
-                )
-            ],
-            'indexes' => [
-                new Index(
-                    'column_UNIQUE',
-                    [
-                        'amfi_code'
-                    ],
-                    'UNIQUE'
                 )
             ],
             'options' => [
                 'TABLE_COLLATION' => 'utf8mb4_general_ci'
             ]
-        ];
-    }
-
-    public function indexes()
-    {
-        return
-        [
-            new Index(
-                'column_INDEX',
-                [
-                    'amfi_code'
-                ],
-                'INDEX'
-            )
         ];
     }
 }
